@@ -3,14 +3,16 @@ import CourseCard from './CourseCard';
 
 const CourseList = ({ schedule }) => {
   const containerStyle = {
-    overflowX: 'none',
-    whiteSpace: 'nowrap',
-    padding: '10px 0'
+    display: 'flex',       // Using flexbox
+    flexDirection: 'row', // Align items in a row
+    overflowX: 'auto',    // Horizontal scroll
+    padding: '10px 0',
+    alignItems: 'stretch' // Make all cards grow to the height of the tallest card
   };
 
   const cardWrapperStyle = {
-    display: 'inline-block',
-    marginRight: '15px'
+    marginRight: '15px',
+    flexShrink: 0 // Prevent flex items from shrinking
   };
 
   return (
