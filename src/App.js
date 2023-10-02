@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import Banner from './components/Banner';
+import CourseList from './components/CourseList';
 
 
 const schedule = {
@@ -36,33 +38,8 @@ const schedule = {
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>{schedule.title}</h1>
-      </header>
-      <div className="App-body">
-        <center>
-        <table>
-          <thead>
-            <tr>
-              <th>Term</th>
-              <th>Code</th>
-              <th>Course</th>
-              <th>When</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(schedule.courses).map(([id, course]) => 
-              <tr key={id}>
-                <td>{course.term}</td>
-                <td>CS {course.number}</td>
-                <td>{course.title}</td>
-                <td>{course.meets}</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-        </center>
-    </div>
+      <Banner content={schedule.title} />
+      <CourseList schedule={schedule}/>
     </div>
   );
 }
