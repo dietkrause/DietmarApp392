@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
+import React, { useState, useEffect } from 'react';
 
 
 const schedule = {
