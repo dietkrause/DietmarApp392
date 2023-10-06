@@ -36,7 +36,7 @@ const schedule = {
 };
 
 function App() {
-  const [courses, setCourses] = useState([]);
+  const [data, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -64,12 +64,11 @@ function App() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
   return (
     <div>
       <div className="App">
       <Banner content={schedule.title} />
-      <CourseList schedule={schedule}/>
+      <CourseList schedule={data}/>
       </div>
     </div>
 
