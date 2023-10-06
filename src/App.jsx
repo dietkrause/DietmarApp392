@@ -70,14 +70,9 @@ function App() {
       <div className="App">
       <Banner content={schedule.title} />
       <CourseList schedule={schedule}/>
+      </div>
     </div>
-      <h1>Courses</h1>
-      <ul>
-        {courses.map((course, index) => (
-          <li key={index}>{course}</li>
-        ))}
-      </ul>
-    </div>
+
   );
 }
 
