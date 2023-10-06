@@ -16,6 +16,7 @@ const CourseList = ({ schedule }) => {
   };
 
   return (
+    <center>
     <div className="App-body" style={containerStyle}>
       {Object.entries(schedule.courses).map(([id, course]) => (
         <div key={id} style={cardWrapperStyle}>
@@ -27,6 +28,7 @@ const CourseList = ({ schedule }) => {
         </div>
       ))}
     </div>
+    </center>
   );
 }
 
