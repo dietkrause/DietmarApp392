@@ -34,14 +34,51 @@ const schedule = {
   }
 };
 
-
 function App() {
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCourses(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
-    <div className="App">
+    <div>
+      <div className="App">
       <Banner content={schedule.title} />
       <CourseList schedule={schedule}/>
     </div>
+      <h1>Courses</h1>
+      <ul>
+        {courses.map((course, index) => (
+          <li key={index}>{course}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
+
 
 export default App;
