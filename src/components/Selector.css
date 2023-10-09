@@ -1,0 +1,32 @@
+.selector-container {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    align-items: center;   /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for a more modern look */
+    margin: 20px 0; /* Adding some margin to space it out from other elements */
+}
+
+.selector-container label {
+    cursor: pointer;
+    padding: 10px 15px; /* Increased padding for a better look */
+    border-radius: 15px;
+    transition: background-color 0.3s, transform 0.3s; /* Added transform for a subtle scaling effect on hover */
+    font-size: 16px; /* Adjust as needed */
+    font-weight: 500; /* Giving the text a bit of weight */
+    color: #333; /* Dark gray color for the text */
+}
+
+.selector-container label:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05); /* Scales the label a bit on hover */
+}
+
+.selector-container input[type="radio"] {
+    margin-right: 10px; /* Increased the margin for better spacing */
+    transform: scale(1.2); /* Makes the radio button slightly larger */
+}

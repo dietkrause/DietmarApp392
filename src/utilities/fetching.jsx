@@ -42,7 +42,8 @@ function useFetching(url) {
     }
     result.status = 2;
     result.data = data;
-    result.message = "200 OK"
+    result.message = "200 OK";
+    //console.log(result.data);
     return result;
   }
   

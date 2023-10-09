@@ -1,0 +1,13 @@
+.banner-container {
+    padding: 15px 15px;  /* Reduced padding */
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0; /* Reduced margin */
+}
+
+.banner-container h1 {
+    font-size: 24px; /* Adjust for the preferred size */
+    margin: 0; /* Removes default margin of h1 */
+}
