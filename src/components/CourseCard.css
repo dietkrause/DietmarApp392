@@ -1,11 +1,13 @@
 .card {
+    /* Example styles - adjust accordingly */
+    box-sizing: border-box; /* To ensure padding doesn't expand the box */
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     padding: 15px;
-    margin: 10px 0;
-    width: 150px;
-    background-color: white;
-}
+    /* No negative margins */
+    margin: 0;
+    width: 100%; /* This ensures it takes up the grid space without overflowing */
+ }
 
 /* Card style when selected */
 .card.selected {
@@ -28,4 +30,5 @@
     margin-top: 10px;
     padding-top: 10px;
     font-size: 0.9rem;
+    align-self: end;  
 }

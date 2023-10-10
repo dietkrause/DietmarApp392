@@ -1,0 +1,13 @@
+/* CourseList.css */
+
+.App-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 20px; 
+    padding: 20px; 
+    width: 100%; 
+}
+
+.card-wrapper {
+    margin: 15px;  /* Add some space around each card */
+}

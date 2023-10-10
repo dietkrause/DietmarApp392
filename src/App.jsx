@@ -45,14 +45,14 @@ function App() {
                 selection={selection}
                 setSelection={setSelection}
             />
+            <SelectedCourses 
+                selectedCourses={selectedCourses} 
+                schedule={result.data} 
+            />
             <CourseList 
                 schedule={{...result.data, courses: filteredCourses}} 
                 selectedCourses={selectedCourses} 
                 setSelectedCourses={setSelectedCourses} 
-            />
-            <SelectedCourses 
-                selectedCourses={selectedCourses} 
-                schedule={result.data} 
             />
         </div>
     );

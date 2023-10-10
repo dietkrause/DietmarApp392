@@ -1,27 +1,25 @@
 import React from 'react';
-import './Selector.css';  // Importing the CSS
+import './Selector.css';
 
 function Selector({ options, defaultOption, selection, setSelection }) {
-  const handleChange = (option) => {
-    setSelection(option);
-    console.log("New Selection:", option);
-  }
+    const handleChange = (option) => {
+        setSelection(option);
+        console.log("New Selection:", option);
+    }
 
-  return (
-    <div className="selector-container">
-      {options.map(option => (
-        <label key={option}>
-          <input 
-            type="radio" 
-            value={option} 
-            checked={selection === option} 
-            onChange={() => handleChange(option)}  // Modified this line
-          />
-          {option}
-        </label>
-      ))}
-    </div>
-  );
+    return (
+        <div className="selector-container">
+            {options.map(option => (
+                <button 
+                    key={option}
+                    className={selection === option ? 'selected' : ''}
+                    onClick={() => handleChange(option)}
+                >
+                    {option}
+                </button>
+            ))}
+        </div>
+    );
 }
 
 export default Selector;
