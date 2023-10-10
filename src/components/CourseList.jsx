@@ -1,7 +1,15 @@
-import React from 'react';
+import React,{useState} from 'react';
 import CourseCard from './CourseCard';
 
-const CourseList = ({ schedule }) => {
+const CourseList = ({ schedule, selectedCourses, setSelectedCourses }) => {
+
+  const handleCardClick = (id) => {
+    if (selectedCourses.includes(id)) {
+        setSelectedCourses(prev => prev.filter(courseId => courseId !== id));
+    } else {
+        setSelectedCourses(prev => [...prev, id]);
+    }
+};
   const containerStyle = {
     display: 'flex',       // Using flexbox
     flexDirection: 'row', // Align items in a row
@@ -20,10 +28,13 @@ const CourseList = ({ schedule }) => {
     <div className="App-body" style={containerStyle}>
       {Object.entries(schedule.courses).map(([id, course]) => (
         <div key={id} style={cardWrapperStyle}>
-          <CourseCard 
-            title={`${course.term} CS ${course.number}`}
-            content={course.title}
-            footer={course.meets}
+          <CourseCard
+              title={`${course.term} CS ${course.number}`}
+              content={course.title}
+              footer={course.meets}
+              id={id}
+              isSelected={selectedCourses.includes(id)}
+              onClick={() => handleCardClick(id)}
           />
         </div>
       ))}
