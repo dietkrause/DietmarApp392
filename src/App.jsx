@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
@@ -6,6 +7,7 @@ import useFetching from './utilities/fetching';
 import Selector from './components/Selector';
 import SelectedCourses from './components/SelectedCourses'; // Import the new component
 import Modal from 'react-modal';
+import EditForm from './components/EditForm';
 
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,42 +41,43 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <Modal 
-            isOpen={isModalOpen} 
-            onRequestClose={() => setIsModalOpen(false)}
-            ariaHideApp={false}
-            contentLabel="Your course plan"
-            >
-            <h2>Your course plan</h2>
-            <SelectedCourses
-                selectedCourses={selectedCourses}
-                schedule={result.data}
-            />
-            <button onClick={() => setIsModalOpen(false)} className="close-button">X</button>
-            </Modal>
-            <Banner content={result.data.title} />
-            <div className="selector-container">
-            <button 
-            onClick={() => setIsModalOpen(true)}
-                    >
+        <Router>
+            <div className="App">
+                <Modal
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    ariaHideApp={false}
+                    contentLabel="Your course plan"
+                >
+                    <h2>Your course plan</h2>
+                    <SelectedCourses selectedCourses={selectedCourses} schedule={result.data} />
+                    <button onClick={() => setIsModalOpen(false)} className="close-button">X</button>
+                </Modal>
+                <Banner content={result.data.title} />
+                <div className="selector-container">
+                    <button onClick={() => setIsModalOpen(true)}>
                         Course Plan
-            </button>
-            <Selector 
-                className="Selector"
-                options={options}
-                defaultOption={defaultOption}
-                selection={selection}
-                setSelection={setSelection}
-            />
+                    </button>
+                    <Selector
+                        className="Selector"
+                        options={options}
+                        defaultOption={defaultOption}
+                        selection={selection}
+                        setSelection={setSelection}
+                    />
+                </div>
+                <Routes>
+                    <Route path="/" element={
+                        <CourseList 
+                            schedule={{...result.data, courses: filteredCourses}} 
+                            selectedCourses={selectedCourses} 
+                            setSelectedCourses={setSelectedCourses} 
+                        />
+                    } exact />
+                    <Route path="/edit/:id" element={<EditForm schedule={{...result.data, courses: filteredCourses}}/>} />
+                </Routes>
             </div>
-            
-            <CourseList 
-                schedule={{...result.data, courses: filteredCourses}} 
-                selectedCourses={selectedCourses} 
-                setSelectedCourses={setSelectedCourses} 
-            />
-        </div>
+        </Router>
     );
 }
 

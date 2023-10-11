@@ -1,0 +1,24 @@
+.button {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: none;
+    background-color: #007bff;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    outline: none; /* To remove the default focus outline */
+}
+
+/* Styles for the selected button */
+.button.selected {
+    background-color: #007bff;
+    color: white; /* Changing the text color for contrast against the lightblue background */
+}
+
+/* Hover effects */
+.button:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
