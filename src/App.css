@@ -36,3 +36,197 @@
     transform: rotate(360deg);
   }
 }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Assuming you add this to App.css */
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+}
+
+
+.ReactModal__Content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;  /* you can adjust this */
+  max-width: 500px; /* and this */
+}
+
+.course-plan-button {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgb(128, 128, 128);
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  outline: none;
+  position: absolute; /* To position it at the top left */
+  top: 110px;
+  left: 10px;
+  z-index: 1000; /* To ensure it appears above other elements */
+}
+
+.course-plan-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* If you want the button to turn light blue when the modal is open, you can use state in your component to toggle a class */
+.course-plan-button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+
+/* ###################################### */
+
+
+.selector-container {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  align-items: center;   /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for a more modern look */
+  margin: 20px 0; /* Adding some margin to space it out from other elements */
+}
+
+.selector-container label {
+  cursor: pointer;
+  padding: 10px 15px; /* Increased padding for a better look */
+  border-radius: 15px;
+  transition: background-color 0.3s, transform 0.3s; /* Added transform for a subtle scaling effect on hover */
+  font-size: 16px; /* Adjust as needed */
+  font-weight: 500; /* Giving the text a bit of weight */
+  color: #333; /* Dark gray color for the text */
+}
+
+.selector-container label:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05); /* Scales the label a bit on hover */
+}
+
+.selector-container input[type="radio"] {
+  margin-right: 10px; /* Increased the margin for better spacing */
+  transform: scale(1.2); /* Makes the radio button slightly larger */
+}
+
+.selector-container {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* Styles for the unselected button */
+.selector-container button {
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: none;
+  background-color: grey;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  outline: none; /* To remove the default focus outline */
+}
+
+/* Styles for the selected button */
+.selector-container button.selected {
+  background-color: #007bff;
+  color: white; /* Changing the text color for contrast against the lightblue background */
+}
+
+/* Hover effects */
+.selector-container button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+}
+
+.selector-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+}
+
+.selector-container button {
+  order: 2;
+}
+
+.selector-container .Selector {
+  order: 1;
+  flex-grow: 1; 
+  display: flex; /* Ensure the Selector itself is also a flex container */
+  gap: 10px; /* Space between buttons within the Selector */
+}
+
+/* Styles for smaller screens - mobile devices */
+@media (max-width: 768px) { 
+  .selector-container {
+      flex-direction: column;
+  }
+
+  .selector-container button {
+      order: 2;
+      width: 100%; 
+      margin-top: 10px; /* Optional: Add some space between the Selector and the Course Plan button */
+  }
+
+  .selector-container .Selector {
+      order: 1;
+      flex-wrap: nowrap; /* Ensure the buttons inside Selector don't wrap */
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 22px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: #f0f0f0;
+}
+

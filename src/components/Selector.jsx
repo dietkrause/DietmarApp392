@@ -8,7 +8,7 @@ function Selector({ options, defaultOption, selection, setSelection }) {
     }
 
     return (
-        <div className="selector-container">
+        <div>
             {options.map(option => (
                 <button 
                     key={option}

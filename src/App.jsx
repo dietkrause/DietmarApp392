@@ -5,8 +5,10 @@ import CourseList from './components/CourseList';
 import useFetching from './utilities/fetching';
 import Selector from './components/Selector';
 import SelectedCourses from './components/SelectedCourses'; // Import the new component
+import Modal from 'react-modal';
 
 function App() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const options = ['Fall', 'Winter', 'Spring'];
     const defaultOption = 'Fall';
     const [selection, setSelection] = useState(defaultOption);
@@ -38,17 +40,35 @@ function App() {
 
     return (
         <div className="App">
+            <Modal 
+            isOpen={isModalOpen} 
+            onRequestClose={() => setIsModalOpen(false)}
+            ariaHideApp={false}
+            contentLabel="Your course plan"
+            >
+            <h2>Your course plan</h2>
+            <SelectedCourses
+                selectedCourses={selectedCourses}
+                schedule={result.data}
+            />
+            <button onClick={() => setIsModalOpen(false)} className="close-button">X</button>
+            </Modal>
             <Banner content={result.data.title} />
-            <Selector
+            <div className="selector-container">
+            <button 
+            onClick={() => setIsModalOpen(true)}
+                    >
+                        Course Plan
+            </button>
+            <Selector 
+                className="Selector"
                 options={options}
                 defaultOption={defaultOption}
                 selection={selection}
                 setSelection={setSelection}
             />
-            <SelectedCourses 
-                selectedCourses={selectedCourses} 
-                schedule={result.data} 
-            />
+            </div>
+            
             <CourseList 
                 schedule={{...result.data, courses: filteredCourses}} 
                 selectedCourses={selectedCourses} 
