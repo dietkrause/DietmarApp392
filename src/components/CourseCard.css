@@ -7,6 +7,7 @@
     /* No negative margins */
     margin: 0;
     width: 100%; /* This ensures it takes up the grid space without overflowing */
+    position:relative;
  }
 
 /* Card style when selected */
@@ -39,8 +40,9 @@
 .edit-button {
     cursor: pointer;
     position: relative;
-    top: -1px;  
-    left: 155px;
+    top: auto;  
+    left: auto;
+    right: auto;
     padding: 5px;  
     border-radius: 8px;
     border: none;
@@ -66,9 +68,7 @@
     transform: scale(1.05);
 }
 
-.card-header {
-    position: relative;
-}
+
 
 
 
