@@ -11,3 +11,7 @@
 .card-wrapper {
     margin: 15px;  /* Add some space around each card */
 }
+
+.card.overlapping {
+    background-color: rgb(230, 123, 123);
+}
