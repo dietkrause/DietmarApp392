@@ -1,24 +1,98 @@
-.button {
-    cursor: pointer;
+/* EditForm.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+.submit-button, .cancel-button {
     padding: 10px 15px;
-    border-radius: 15px;
+    margin: 5px;
     border: none;
-    background-color: #007bff;
-    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 16px;
-    font-weight: 500;
-    color: white;
-    outline: none; /* To remove the default focus outline */
+    outline: none;
+    transition: background-color 0.3s;
 }
 
-/* Styles for the selected button */
-.button.selected {
+.submit-button {
     background-color: #007bff;
-    color: white; /* Changing the text color for contrast against the lightblue background */
+    color: white;
 }
 
-/* Hover effects */
-.button:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05);
+.cancel-button {
+    background-color: #e0e0e0; /* grey background */
+    color: black;
+}
+
+/* Add hover styles for a slightly darker background on hover */
+.submit-button:hover {
+    background-color: #0062cc;
+}
+
+.cancel-button:hover {
+    background-color: #d0d0d0;
+}
+
+/* If you'd like to add a bit of spacing around the form */
+.container {
+    padding: 20px;
+}
+
+.inputError {
+    border-color: lightcoral;
+    background-color: #ffe6e6;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+.formActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
