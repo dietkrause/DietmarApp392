@@ -63,8 +63,8 @@ const EditForm = ({ schedule }) => {
                     {meetsError && <div className="errorMessage">{meetsError}</div>}
                 </div>
                 <div className="formActions">
-                    <button onClick={onSubmit} className="submitButton">Submit</button>
-                    <button onClick={() => navigate('/')} className="cancelButton">Cancel</button>
+                    <button onClick={onSubmit} className="submit-button">Submit</button>
+                    <button onClick={() => navigate('/')} className="cancel-button">Cancel</button>
                 </div>
             </form>
         </div>

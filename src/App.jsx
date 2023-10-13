@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
-import useFetching from './utilities/fetching';
 import Selector from './components/Selector';
-import SelectedCourses from './components/SelectedCourses'; // Import the new component
+import SelectedCourses from './components/SelectedCourses';
 import Modal from 'react-modal';
 import EditForm from './components/EditForm';
+import crud from './utilities/crud';
 
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,13 +15,33 @@ function App() {
     const defaultOption = 'Fall';
     const [selection, setSelection] = useState(defaultOption);
     const [filteredCourses, setFilteredCourses] = useState({});
-    const [selectedCourses, setSelectedCourses] = useState([]); // New state for selected courses
-
-    const url = `https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php?`;
-    const result = useFetching(url);
+    const [selectedCourses, setSelectedCourses] = useState([]);
+    const [result, setResult] = useState({
+        status: 'loading',
+        data: null,
+        message: 'Loading...'
+    });
 
     useEffect(() => {
-        if (result.data && result.data.courses) {
+        crud.readEntry("schedule", (data, error) => {
+            if (data) {
+                setResult({
+                    status: 'success',
+                    data: data,
+                    message: ''
+                });
+            } else {
+                setResult({
+                    status: 'error',
+                    data: null,
+                    message: error || 'Failed to fetch data from Firebase.'
+                });
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        if (result && result.data && result.data.courses) {
             const courses = {};
             for (const key in result.data.courses) {
                 if (result.data.courses[key].term === selection) {
@@ -30,14 +50,18 @@ function App() {
             }
             setFilteredCourses(courses);
         }
-    }, [selection, result.data]);
+    }, [selection, result]);
 
     useEffect(() => {
-      console.log(selectedCourses);
-  }, [selectedCourses]);
+        console.log(selectedCourses);
+    }, [selectedCourses]);
 
-    if (result.status === 0 || result.status === 1) {
+    if (result.status === 'loading') {
         return <div>{result.message}</div>;
+    }
+
+    if (result.status === 'error') {
+        return <div>Error: {result.message}</div>;
     }
 
     return (
@@ -68,13 +92,13 @@ function App() {
                 </div>
                 <Routes>
                     <Route path="/" element={
-                        <CourseList 
-                            schedule={{...result.data, courses: filteredCourses}} 
-                            selectedCourses={selectedCourses} 
-                            setSelectedCourses={setSelectedCourses} 
+                        <CourseList
+                            schedule={{...result.data, courses: filteredCourses}}
+                            selectedCourses={selectedCourses}
+                            setSelectedCourses={setSelectedCourses}
                         />
                     } exact />
-                    <Route path="/edit/:id" element={<EditForm schedule={{...result.data, courses: filteredCourses}}/>} />
+                    <Route path="/edit/:id" element={<EditForm schedule={{...result.data, courses: filteredCourses}} />} />
                 </Routes>
             </div>
         </Router>

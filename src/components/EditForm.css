@@ -47,9 +47,9 @@ input[type="text"]:focus {
 
 .submit-button, .cancel-button {
     padding: 10px 15px;
-    margin: 5px;
+    margin: 0px;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
     outline: none;
@@ -93,6 +93,6 @@ input[type="text"]:focus {
 
 .formActions {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 20px;
 }
