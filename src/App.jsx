@@ -8,6 +8,7 @@ import SelectedCourses from './components/SelectedCourses';
 import Modal from 'react-modal';
 import EditForm from './components/EditForm';
 import crud from './utilities/crud';
+import AuthButton from './components/AuthButton';
 
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,6 +79,7 @@ function App() {
                     <button onClick={() => setIsModalOpen(false)} className="close-button">X</button>
                 </Modal>
                 <Banner content={result.data.title} />
+                <AuthButton />
                 <div className="selector-container">
                     <button onClick={() => setIsModalOpen(true)}>
                         Course Plan

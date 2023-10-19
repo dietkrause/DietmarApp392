@@ -6,7 +6,7 @@ import { getDatabase } from 'firebase/database';
 
 // Your web app's Firebase configuration
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyBNcmnctjzYHOC4DuwPFGp9p5vZns87h44",
   authDomain: "dietmarapp392.firebaseapp.com",
   databaseURL: "https://dietmarapp392-default-rtdb.firebaseio.com",
@@ -16,8 +16,10 @@ const firebaseConfig = {
   appId: "1:563075927866:web:fc3828832bf30b6c900a03"
 };
 
-let app = null;
+let firebase = null;
 if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
+    firebase = initializeApp(firebaseConfig);
 }
 export const db = getDatabase(app);
+export const firebase = firebase;
+
