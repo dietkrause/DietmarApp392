@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './EditForm.css';
-import crud from '/Users/dietmarkrausegutierrez/Desktop/Northwestern/Fall2023/CS392/DietmarApp392/dietmarapp392/src/utilities/crud.js'; // Import the crud module
+import {crud} from '../utilities/crud.js'; // Import the crud module
 import Modal from 'react-modal';
 
 const EditForm = ({ schedule }) => {
@@ -63,7 +63,7 @@ const EditForm = ({ schedule }) => {
         };
   
         // Update the course in Firebase database
-        await crud.updateEntry(`/courses/${id}`, data);
+        await crud.updateEntry(`/schedule/courses/${id}`, data);
   
         console.log('Course updated successfully');
         openModal('Course updated successfully');

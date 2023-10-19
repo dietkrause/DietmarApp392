@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Banner from './components/Banner';
-import CourseList from './components/CourseList';
 import Selector from './components/Selector';
 import SelectedCourses from './components/SelectedCourses';
 import Modal from 'react-modal';
-import EditForm from './components/EditForm';
 import crud from './utilities/crud';
 import AuthButton from './components/AuthButton';
+import AppRoutes from './components/AppRoutes';
 
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,44 +64,33 @@ function App() {
     }
 
     return (
-        <Router>
-            <div className="App">
-                <Modal
-                    isOpen={isModalOpen}
-                    onRequestClose={() => setIsModalOpen(false)}
-                    ariaHideApp={false}
-                    contentLabel="Your course plan"
-                >
-                    <h2>Your course plan</h2>
-                    <SelectedCourses selectedCourses={selectedCourses} schedule={result.data} />
-                    <button onClick={() => setIsModalOpen(false)} className="close-button">X</button>
-                </Modal>
-                <Banner content={result.data.title} />
-                <AuthButton />
-                <div className="selector-container">
-                    <button onClick={() => setIsModalOpen(true)}>
-                        Course Plan
-                    </button>
-                    <Selector
-                        className="Selector"
-                        options={options}
-                        defaultOption={defaultOption}
-                        selection={selection}
-                        setSelection={setSelection}
-                    />
-                </div>
-                <Routes>
-                    <Route path="/" element={
-                        <CourseList
-                            schedule={{...result.data, courses: filteredCourses}}
-                            selectedCourses={selectedCourses}
-                            setSelectedCourses={setSelectedCourses}
-                        />
-                    } exact />
-                    <Route path="/edit/:id" element={<EditForm schedule={{...result.data, courses: filteredCourses}} />} />
-                </Routes>
+        <div className="App">
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={() => setIsModalOpen(false)}
+                ariaHideApp={false}
+                contentLabel="Your course plan"
+            >
+                <h2>Your course plan</h2>
+                <SelectedCourses selectedCourses={selectedCourses} schedule={result.data} />
+                <button onClick={() => setIsModalOpen(false)} className="close-button">X</button>
+            </Modal>
+            <Banner content={result.data.title} />
+            <AuthButton />
+            <div className="selector-container">
+                <button onClick={() => setIsModalOpen(true)}>
+                    Course Plan
+                </button>
+                <Selector
+                    className="Selector"
+                    options={options}
+                    defaultOption={defaultOption}
+                    selection={selection}
+                    setSelection={setSelection}
+                />
             </div>
-        </Router>
+            <AppRoutes data={{ ...result.data, courses: filteredCourses, selectedCourses, setSelectedCourses }} />
+        </div>
     );
 }
 
