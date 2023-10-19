@@ -3,14 +3,15 @@ import './CourseCard.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { useAuthState } from '../utilities/firebase'; // Import the useAuthState hook
+//import { useAuthState } from '../utilities/firebase'; // Import the useAuthState hook
+import { useProfile } from '../utilities/profile';
 
 const CourseCard = ({ title, content, footer, isSelected, onClick, overlappingWithSelected, id }) => {
-  const [user] = useAuthState(); // Get the user authentication state
+  const [{user,isAdmin}] = useProfile(); // Get the user authentication state
 
   return (
     <div className={`card ${isSelected ? 'selected' : overlappingWithSelected ? 'overlapping' : ''}`} onClick={onClick}>
-      {user ? ( // Check if the user is logged in
+      {isAdmin ? ( // Check if the user is logged in
         <Link className="edit-button" to={`/edit/${id}`}>
           <FontAwesomeIcon icon={faPencilAlt} />
         </Link>
