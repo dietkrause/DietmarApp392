@@ -1,4 +1,5 @@
-import { ref, set, update, remove, onValue } from 'firebase/database';
+import { ref, set, update, remove, onValue,off } from 'firebase/database';
+import { useState, useEffect } from 'react';
 import { initializeApp, getApps } from "firebase/app";
 import { getDatabase } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
@@ -22,7 +23,32 @@ if (!getApps().length) {
 }
 export const db = getDatabase(app);
 export const firebase = app;
-const crud = {
+
+export const useDbData = (path) => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const refObj = ref(db, path);
+
+    const listener = onValue(refObj, snapshot => {
+      setData(snapshot.val());
+      setIsLoading(false);
+    }, err => {
+      setError(err);
+      setIsLoading(false);
+    });
+
+    // Cleanup listener when component is unmounted
+    return () => off(refObj, listener);
+  }, [path]);
+
+  return [data, isLoading, error];
+};
+
+
+export const  crud = {
 
   // CREATE: Add or Update an entry
   createEntry: (path, data) => {
