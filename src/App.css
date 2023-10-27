@@ -78,7 +78,7 @@
   color: white;
   outline: none;
   position: absolute; /* To position it at the top left */
-  top: 110px;
+  top: 50px;
   left: 10px;
   z-index: 1000; /* To ensure it appears above other elements */
 }
