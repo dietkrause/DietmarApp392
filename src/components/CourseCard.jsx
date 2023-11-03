@@ -19,7 +19,7 @@ const CourseCard = ({ title, content, footer, isSelected, onClick, overlappingWi
         // Render something else or nothing if the user is not logged in
         null
       )}
-      <div className="title">{title}</div>
+      <div className="title" data-cy="course">{title}</div>
       <div className="content">{content}</div>
       <div className="footer">{footer}</div>
     </div>

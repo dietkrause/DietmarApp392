@@ -14,6 +14,7 @@ function Selector({ options, defaultOption, selection, setSelection }) {
                     key={option}
                     className={selection === option ? 'selected' : ''}
                     onClick={() => handleChange(option)}
+                    data-cy={option}
                 >
                     {option}
                 </button>
